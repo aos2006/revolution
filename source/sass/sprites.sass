@@ -1,0 +1,147 @@
+/*
+  SASS variables are information about icon's compiled state, stored under its original file name
+
+  .icon-home
+    width: $icon-home-width
+
+  The large array-like variables contain all information about a single icon
+  $icon-home: x y offset_x offset_y width height total_width total_height image_path
+
+  At the bottom of this section, we provide information about the spritesheet itself
+  $spritesheet: width height image $spritesheet-sprites
+  */
+$about-us-2-name: 'about-us-2'
+$about-us-2-x: 0px
+$about-us-2-y: 375px
+$about-us-2-offset-x: 0px
+$about-us-2-offset-y: -375px
+$about-us-2-width: 187px
+$about-us-2-height: 223px
+$about-us-2-total-width: 295px
+$about-us-2-total-height: 598px
+$about-us-2-image: '../img/sprites.png'
+$about-us-2: (0px, 375px, 0px, -375px, 187px, 223px, 295px, 598px, '../img/sprites.png', 'about-us-2', )
+$basket-name: 'basket'
+$basket-x: 0px
+$basket-y: 132px
+$basket-offset-x: 0px
+$basket-offset-y: -132px
+$basket-width: 14px
+$basket-height: 13px
+$basket-total-width: 295px
+$basket-total-height: 598px
+$basket-image: '../img/sprites.png'
+$basket: (0px, 132px, 0px, -132px, 14px, 13px, 295px, 598px, '../img/sprites.png', 'basket', )
+$dribbble-name: 'dribbble'
+$dribbble-x: 0px
+$dribbble-y: 51px
+$dribbble-offset-x: 0px
+$dribbble-offset-y: -51px
+$dribbble-width: 12px
+$dribbble-height: 12px
+$dribbble-total-width: 295px
+$dribbble-total-height: 598px
+$dribbble-image: '../img/sprites.png'
+$dribbble: (0px, 51px, 0px, -51px, 12px, 12px, 295px, 598px, '../img/sprites.png', 'dribbble', )
+$facebook-name: 'facebook'
+$facebook-x: 0px
+$facebook-y: 78px
+$facebook-offset-x: 0px
+$facebook-offset-y: -78px
+$facebook-width: 6px
+$facebook-height: 12px
+$facebook-total-width: 295px
+$facebook-total-height: 598px
+$facebook-image: '../img/sprites.png'
+$facebook: (0px, 78px, 0px, -78px, 6px, 12px, 295px, 598px, '../img/sprites.png', 'facebook', )
+$feed-name: 'feed'
+$feed-x: 0px
+$feed-y: 105px
+$feed-offset-x: 0px
+$feed-offset-y: -105px
+$feed-width: 12px
+$feed-height: 12px
+$feed-total-width: 295px
+$feed-total-height: 598px
+$feed-image: '../img/sprites.png'
+$feed: (0px, 105px, 0px, -105px, 12px, 12px, 295px, 598px, '../img/sprites.png', 'feed', )
+$googleplus-name: 'googleplus'
+$googleplus-x: 0px
+$googleplus-y: 25px
+$googleplus-offset-x: 0px
+$googleplus-offset-y: -25px
+$googleplus-width: 12px
+$googleplus-height: 11px
+$googleplus-total-width: 295px
+$googleplus-total-height: 598px
+$googleplus-image: '../img/sprites.png'
+$googleplus: (0px, 25px, 0px, -25px, 12px, 11px, 295px, 598px, '../img/sprites.png', 'googleplus', )
+$new-collection-2-name: 'new-collection-2'
+$new-collection-2-x: 0px
+$new-collection-2-y: 160px
+$new-collection-2-offset-x: 0px
+$new-collection-2-offset-y: -160px
+$new-collection-2-width: 295px
+$new-collection-2-height: 200px
+$new-collection-2-total-width: 295px
+$new-collection-2-total-height: 598px
+$new-collection-2-image: '../img/sprites.png'
+$new-collection-2: (0px, 160px, 0px, -160px, 295px, 200px, 295px, 598px, '../img/sprites.png', 'new-collection-2', )
+$twitter-name: 'twitter'
+$twitter-x: 0px
+$twitter-y: 0px
+$twitter-offset-x: 0px
+$twitter-offset-y: 0px
+$twitter-width: 12px
+$twitter-height: 10px
+$twitter-total-width: 295px
+$twitter-total-height: 598px
+$twitter-image: '../img/sprites.png'
+$twitter: (0px, 0px, 0px, 0px, 12px, 10px, 295px, 598px, '../img/sprites.png', 'twitter', )
+$spritesheet-width: 295px
+$spritesheet-height: 598px
+$spritesheet-image: '../img/sprites.png'
+$spritesheet-sprites: ($about-us-2, $basket, $dribbble, $facebook, $feed, $googleplus, $new-collection-2, $twitter, )
+$spritesheet: (295px, 598px, '../img/sprites.png', $spritesheet-sprites, )
+
+/*
+  The provided mixins are intended to be used with the array-like variables
+
+  .icon-home
+    @include sprite-width($icon-home)
+
+  .icon-email
+    @include sprite($icon-email)
+  */
+@mixin sprite-width($sprite)
+  width: nth($sprite, 5)
+
+@mixin sprite-height($sprite)
+  height: nth($sprite, 6)
+
+@mixin sprite-position($sprite)
+  $sprite-offset-x: nth($sprite, 3)
+  $sprite-offset-y: nth($sprite, 4)
+  background-position: $sprite-offset-x  $sprite-offset-y
+
+@mixin sprite-image($sprite)
+  $sprite-image: nth($sprite, 9)
+  background-image: url(#{$sprite-image})
+
+@mixin sprite($sprite)
+  @include sprite-image($sprite)
+  @include sprite-position($sprite)
+  @include sprite-width($sprite)
+  @include sprite-height($sprite)
+
+/*
+  The `sprites` mixin generates identical output to the CSS template
+    but can be overridden inside of SASS
+
+  @include sprites($spritesheet-sprites)
+  */
+@mixin sprites($sprites)
+  @each $sprite in $sprites
+    $sprite-name: nth($sprite, 10)
+    .#{$sprite-name}
+      @include sprite($sprite)
